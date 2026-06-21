@@ -2,7 +2,8 @@ package com.delivery.food_monolith.models;
 
 import com.delivery.food_monolith.models.enums.Vehicle;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
@@ -11,7 +12,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "courier_profiles")
-@Data
+@Getter
+@Setter
 public class CourierProfile {
     @Id
     @GeneratedValue

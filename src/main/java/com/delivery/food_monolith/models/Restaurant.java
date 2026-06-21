@@ -1,13 +1,15 @@
 package com.delivery.food_monolith.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 import java.util.UUID;
 
 @Entity
 @Table(name = "restaurants")
-@Data
+@Getter
+@Setter
 public class Restaurant {
 
     @Id

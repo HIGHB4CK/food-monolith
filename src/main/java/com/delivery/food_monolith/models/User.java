@@ -4,7 +4,8 @@ import com.delivery.food_monolith.models.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
@@ -18,7 +19,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "users")
-@Data
+@Getter
+@Setter
 @SQLDelete(sql = "UPDATE users SET is_active = false WHERE id = ?") // Переопределене команды удаления(repo.delete сделает UPDATE
 @SQLRestriction("is_active = true") // Фильтр для SELECT
 public class User {

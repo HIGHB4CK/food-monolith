@@ -2,14 +2,16 @@ package com.delivery.food_monolith.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "menu_categories")
-@Data
+@Getter
+@Setter
 public class MenuCategory {
     @Id
     @GeneratedValue

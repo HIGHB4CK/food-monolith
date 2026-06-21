@@ -1,5 +1,7 @@
 package com.delivery.food_monolith.config;
 
+import com.delivery.food_monolith.security.JwtAuthenticationFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,10 +10,26 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final JwtAuthenticationFilter jwtAuthFilter;
+
+    private static final String[] SWAGGER_ENDPOINTS = {
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-ui.html"
+    };
+
+    private static final String[] PUBLIC_ENDPOINTS = {
+            "/api/clients/register",
+            "/api/auth/login",
+            "/error"
+    };
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -23,21 +41,16 @@ public class SecurityConfig {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
-                    // Открытие доступа к регистрации
-                    .requestMatchers("/api/clients/register").permitAll()
+                    // Открытие доступа для Swagger
+                    .requestMatchers(SWAGGER_ENDPOINTS).permitAll()
 
-                    // Расширенный список всех возможных путей для Swaggerа
-                    .requestMatchers(
-                            "/v3/api-docs",
-                            "/v3/api-docs/**",
-                            "/swagger-ui/**",
-                            "/swagger-ui.html",
-                            "/error"
-                    ).permitAll()
+                    // Открытие доступа для публичных путей
+                    .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
 
                     // Всё остальное закрыли
                     .anyRequest().authenticated()
-            );
+            )
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

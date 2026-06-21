@@ -2,7 +2,8 @@ package com.delivery.food_monolith.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -16,7 +17,8 @@ import java.util.UUID;
                 })
         }
 )
-@Data
+@Getter
+@Setter
 public class OrderItem {
     @Id
     @GeneratedValue

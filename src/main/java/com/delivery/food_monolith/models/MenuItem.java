@@ -2,7 +2,8 @@ package com.delivery.food_monolith.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
@@ -15,7 +16,8 @@ import java.util.UUID;
         @UniqueConstraint(columnNames = {"restaurant_id", "food_id"})
     }
 )
-@Data
+@Getter
+@Setter
 public class MenuItem {
     @Id
     @GeneratedValue

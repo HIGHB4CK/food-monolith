@@ -2,7 +2,8 @@ package com.delivery.food_monolith.models;
 
 import com.delivery.food_monolith.models.enums.OrderStatus;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
@@ -11,7 +12,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "orders")
-@Data
+@Getter
+@Setter
 public class Order {
     @Id
     @GeneratedValue

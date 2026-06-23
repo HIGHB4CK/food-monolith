@@ -1,12 +1,11 @@
 package com.delivery.food_monolith.repositories;
 
-import com.delivery.food_monolith.models.ClientProfile;
+import com.delivery.food_monolith.models.AdminProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface ClientProfileRepository extends JpaRepository<ClientProfile, UUID> {
-
+public interface AdminProfileRepository extends JpaRepository<AdminProfile, UUID> {
 }

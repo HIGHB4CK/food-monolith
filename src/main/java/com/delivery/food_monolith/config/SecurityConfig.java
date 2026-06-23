@@ -31,6 +31,11 @@ public class SecurityConfig {
             "/error"
     };
 
+    private static final String[] ADMIN_ENDPOINTS = {
+            "/api/admins/register",
+            "/api/cities/**"
+    };
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -46,6 +51,9 @@ public class SecurityConfig {
 
                     // Открытие доступа для публичных путей
                     .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
+
+                    // Открытие доступа для регистрации администраторов только администраторам
+                    .requestMatchers(ADMIN_ENDPOINTS).hasRole("ADMIN")
 
                     // Всё остальное закрыли
                     .anyRequest().authenticated()

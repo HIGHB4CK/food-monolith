@@ -6,10 +6,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 @Data
-public class ClientCreateDTO {
-
-    @NotBlank(message = "Введите имя")
-    private String name;
+public class AdminCreateDTO {
 
     @NotBlank(message = "Введите электронную почту")
     @Pattern(
@@ -28,4 +25,13 @@ public class ClientCreateDTO {
     @NotBlank(message = "Придумайте пароль")
     @Length(min = 8, message = "Пароль должен содержать минимум 8 символов")
     private String password;
+
+    @NotBlank(message = "Фамилия не может быть пустым")
+    private String surname;
+
+    @NotBlank(message = "Имя не может быть пустым")
+    private String name;
+
+    private String additionalName;
+
 }

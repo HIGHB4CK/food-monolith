@@ -1,6 +1,7 @@
 package com.delivery.food_monolith.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
@@ -22,5 +23,6 @@ public class Street {
     @JoinColumn(name = "city_id")
     private City city;
 
+    @NotBlank(message = "Введите название улицы")
     private String name;
 }

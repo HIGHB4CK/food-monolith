@@ -37,7 +37,7 @@ public class ClientService {
         User user = clientMapper.toUserEntity(dto);
         user.getRoles().add(Role.CLIENT);
 
-        user.setPasswordHash(passwordEncoder.encode(dto.getPasswordHash()));
+        user.setPasswordHash(passwordEncoder.encode(dto.getPassword()));
 
         User savedUser = userRepository.save(user);
 

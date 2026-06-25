@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleDataIntegrityViolation(DataIntegrityViolationException ex) {
         ErrorResponse error = new ErrorResponse(
                 HttpStatus.CONFLICT.value(),
-                "Пользователь с такими данными (email или телефон) уже существует"
+                "Запись с такими уникальными данными уже существует"
         );
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }

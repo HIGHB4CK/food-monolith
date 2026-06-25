@@ -1,10 +1,9 @@
 package com.delivery.food_monolith.dto;
 
-import com.delivery.food_monolith.models.Street;
-
-import java.math.BigDecimal;
+import lombok.Data;
 import java.util.UUID;
 
+@Data
 public class AddressResponseDTO {
     private UUID id;
     private String streetName;

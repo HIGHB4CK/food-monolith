@@ -26,7 +26,7 @@ public class AdminService {
     @Transactional
     public AdminResponseDTO registerAdmin(AdminCreateDTO dto) {
 
-        if (userRepository.existsByEmail(dto.getEmail())) {
+        if (userRepository.existsByEmailIgnoreCase(dto.getEmail())) {
             throw new DuplicateResourceException("Администратор с такой эл. почтой существует");
         }
 

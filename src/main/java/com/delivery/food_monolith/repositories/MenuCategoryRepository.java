@@ -8,5 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface MenuCategoryRepository extends JpaRepository<MenuCategory, UUID> {
-
+    boolean existsByRestaurantIdAndNameIgnoreCase(UUID restaurantId, String name);
 }

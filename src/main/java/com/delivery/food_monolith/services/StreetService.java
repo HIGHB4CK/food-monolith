@@ -10,6 +10,7 @@ import com.delivery.food_monolith.repositories.CityRepository;
 import com.delivery.food_monolith.repositories.StreetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -21,11 +22,12 @@ public class StreetService {
     private final StreetRepository streetRepository;
     private final StreetMapper streetMapper;
 
+    @Transactional
     public StreetResponseDTO createStreet(UUID cityId, StreetCreateDTO dto) {
         City city = cityRepository.findById(cityId)
                 .orElseThrow(() -> new IllegalArgumentException("Город с таким ID не существует"));
 
-        if (streetRepository.existsByCityIdAndName(cityId, dto.getName())) {
+        if (streetRepository.existsByCityIdAndNameIgnoreCase(cityId, dto.getName())) {
             throw new DuplicateResourceException("Улица с таким названием существует в этом городе");
         }
 

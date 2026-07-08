@@ -13,7 +13,7 @@ import java.util.UUID;
 @Table(
     name = "menu_items",
     uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"restaurant_id", "food_id"})
+        @UniqueConstraint(columnNames = {"menu_category_id", "food_id"})
     }
 )
 @Getter

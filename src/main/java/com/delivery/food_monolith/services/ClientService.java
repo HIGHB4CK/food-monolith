@@ -26,7 +26,7 @@ public class ClientService {
     @Transactional
     public ClientResponseDTO createUser(ClientCreateDTO dto) {
 
-        if (userRepository.existsByEmail(dto.getEmail())) {
+        if (userRepository.existsByEmailIgnoreCase(dto.getEmail())) {
             throw new DuplicateResourceException("Пользователь с таким email уже зарегистрирован");
         }
 

@@ -1,26 +1,13 @@
-package com.delivery.food_monolith.models;
+package com.delivery.food_monolith.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.UuidGenerator;
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import java.util.UUID;
-
-@Entity
-@Table(name = "foods")
-@Getter
-@Setter
-public class Food {
-    @Id
-    @GeneratedValue
-    @UuidGenerator(style = UuidGenerator.Style.TIME)
-    private UUID id;
-
+@Data
+public class FoodCreateDTO {
     @NotBlank(message = "Укажите название")
     private String name;
 

@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface FoodRepository extends JpaRepository<Food, UUID> {
+    boolean existsByNameIgnoreCase(String name);
 }

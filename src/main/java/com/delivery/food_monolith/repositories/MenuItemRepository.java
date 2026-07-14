@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface MenuItemRepository extends JpaRepository<MenuItem, UUID> {
+    boolean existsByMenuCategoryIdAndNameIgnoreCase(UUID categoryId, String name);
 }
